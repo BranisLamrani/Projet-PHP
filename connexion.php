@@ -22,7 +22,7 @@ if (!empty($_POST)) {
     if(count($users) > 0) {
         $_SESSION['connected'] = true;
         $_SESSION['id'] = $users[0] ['id']; //enregistrement de l'id membre en session
-        header('location:account.php');
+        header('location:membre.php');
     } else {
         echo 'Connexion impossible. Veuillez réessayer.';
     }
