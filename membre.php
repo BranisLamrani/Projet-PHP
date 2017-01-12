@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $dsn = 'mysql:dbname=projet_php;host=localhost';
 $user = 'root';
 $password = '';
@@ -8,6 +7,15 @@ try {
     $dbh = new PDO($dsn, $user, $password);
 } catch (PDOException $e) {
     echo 'Connexion échouée : ' . $e->getMessage();
+}
+
+if(!empty($_GET['deconnexion']) && $_GET['deconnexion'] === 'true') {
+    session_destroy();
+    header('Location: connexion.php');
+}
+
+if (empty($_SESSION)) {
+    header('Location: index.php');
 }
 ?>
 
@@ -19,26 +27,16 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Page Membre</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
-
-<?php
-if (empty ($_SESSION)) {
-    header('location:index.php');
-}
-?>
 
 <div class="head">
        <div class="titre">NAME</div>
        <div class="membre">
            <a href="accueil_membre.php">Accueil</a>
-           <a href="">Mon Compte</a>
-           <a href="index.php">Se Déconnecter
-               <?php
-               session_destroy();
-               ?>
-           </a>
+           <a href="#">Mon Compte</a>
+           <a href="membre.php?deconnexion=true">Se Déconnecter</a>
        </div>
    </div>
 
