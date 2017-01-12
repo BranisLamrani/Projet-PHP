@@ -17,7 +17,7 @@ met un code pour pouvoir pirater le site par exemple. Le but étant de modifier 
 donnée.
 */
 
-$repertory_image = 'upload/';
+$repertory_image = 'image/';
 
 if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court et cela évite les erreurs sur la BDD
 {
@@ -63,13 +63,13 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
             }
             else
             {
-                session_start();
-                $newname=0001;
-                $envoi = move_uploaded_file($imagetmp, $newname );
+
+                $newname= "photo".uniqid();
+                move_uploaded_file($imagetmp, $repertory_image .$newname);
                 $dsn = 'mysql:dbname=projet_php;host=127.0.0.1';
                 $user = 'root';
                 $password = '';
-
+                $image=$_FILES['imageu'] ['name'];
                 try {
                     $dbh = new PDO($dsn, $user, $password);
                 } catch (PDOException $e) {
@@ -77,13 +77,17 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
                 }
 
 
-                $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :image');
+                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu)');
 
                 $req->execute([
-                    ':name' => $_POST['name'],
-                    ':image' => $imagename,
+                    ':name' => $newname,
+                    ':description' => $_POST['description'],
+                    ':imageu' => $repertory_image.$newname
 
                 ]);
+
+                $test=$req-> fetchAll();
+                var_dump($test);
             }
 
         }
@@ -93,8 +97,9 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
 }
 
 ?>
-
 <form action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="imageu" id="file">
+    <input type="text" name="description" id="description">
+
     <button type="submit">Envoyer</button>
 </form>
