@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+$dsn = 'mysql:dbname=projet_php;host=localhost';
+$user = 'root';
+$password = '';
+try {
+    $dbh = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : ' . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +18,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/index.css">
-
 </head>
 <body>
     <header>
@@ -18,7 +30,7 @@
             ?>
             <form action="" method="post">
                 <input type="text" name="mail" id="mail" placeholder="Identifiant">
-                <input type="text" name="password" id="password" placeholder="Mot de passe">
+                <input type="password" name="password" id="password" placeholder="Mot de passe">
                 <button type="submit">Connexion</button>
             </form>
         </div>

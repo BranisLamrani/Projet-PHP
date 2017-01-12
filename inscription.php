@@ -1,22 +1,12 @@
 <?php
-session_start();
-//connexion à la BDD
-$dsn = 'mysql:dbname=projet_php;host=localhost';
-$user = 'root';
-$password = '';
-try {
-    $dbh = new PDO($dsn, $user, $password);
-} catch (PDOException $e) {
-    echo 'Connexion échouée : ' . $e->getMessage();
-}
-
     if (!empty($_POST)) {
+        $crypted_password = crypt('inscription_password');
         //préparation de la requete
         $requete = $dbh->prepare('INSERT INTO profil VALUES (NULL, :name, :password, :mail)');
         //exécution de la requete
         $requete->execute([
             ':name' => $_POST['name'],
-            ':password' => $_POST['password'],
-            ':mail' => $_POST['mail']
+            ':password' => $_POST['inscription_password'],
+            ':mail' => $_POST['inscription_mail']
         ]);
     }

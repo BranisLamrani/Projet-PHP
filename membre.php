@@ -23,12 +23,22 @@ try {
 </head>
 <body>
 
+<?php
+if (empty ($_SESSION)) {
+    header('location:index.php');
+}
+?>
+
 <div class="head">
        <div class="titre">NAME</div>
        <div class="membre">
            <a href="accueil_membre.php">Accueil</a>
            <a href="">Mon Compte</a>
-           <a href="index.php">Se Déconnecter</a>
+           <a href="index.php">Se Déconnecter
+               <?php
+               session_destroy();
+               ?>
+           </a>
        </div>
    </div>
 
