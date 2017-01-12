@@ -18,29 +18,47 @@ try {
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
+
     <header>
         <div class="titre">
-            Name
-        </div>
-        <div class="connexion">
-            <?php
-            require 'connexion.php';
-            ?>
-            <form action="" method="post">
-                <input type="text" name="mail" id="mail" placeholder="Identifiant">
-                <input type="password" name="password" id="password" placeholder="Mot de passe">
-                <button type="submit">Connexion</button>
-            </form>
+            Photosup
         </div>
     </header>
 
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Inscription</a></li>
+                    <li><a href="#">Se connecter</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text"  placeholder="Identifiant">
+                        <input type="text" placeholder="Mot de passe">
+                    </div>
+                    <button type="Submit" class="connecte" >Connexion</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
+    </nav>
+
+
+
+
         
-        
-    <?php
-    require 'inscription.php';
-    ?>
+
     <div class="inscription">
         <form action="#" method="post" enctype="multipart/form-data">
             <h2>INSCRIPTION</h2>
@@ -73,6 +91,9 @@ try {
             <button type="submit"> S'inscrire</button>
         </form>
     </div>
+    <?php
+    require 'inscription.php';
+    ?>
 
      
      

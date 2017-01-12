@@ -4,11 +4,13 @@ body {
 header {
     display: inline-flex;
     padding: 2em;
+    margin-left: 40vw;
 }
 .titre {
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 2em;
+
 }
 
 .connexion {
@@ -47,3 +49,5 @@ label {
     border-radius: 2px;
     text-transform: uppercase;
 }
+
+.nav
