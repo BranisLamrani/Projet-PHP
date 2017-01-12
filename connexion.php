@@ -11,12 +11,11 @@ try {
 }
 
 if (!empty($_POST)) {
-    //$crypted_password = crypt('connexion_password', 'branisnaomipratheepa');
+    $crypt_password = crypt($_POST['connexion_password'], 'branisnaomipratheepa');
     $login = $dbh->prepare('SELECT * FROM profil WHERE mail = :mail AND password = :password');
     $login->execute([
         ':mail' => $_POST['connexion_mail'],
-        ':password' => $_POST['connexion_password']
-    ]);
+        ':password' => $crypt_password]);
     $users = $login->fetchAll();
 
     if (count($users) > 0) {
@@ -30,10 +29,33 @@ if (!empty($_POST)) {
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/membre.css">
+</head>
+<body>
 <div class="connexion">
     <form action="" method="post">
-        <input type="text" name="connexion_mail" id="connexion_mail" placeholder="Identifiant">
-        <input type="password" name="connexion_password" id="connexion_password" placeholder="Mot de passe">
-        <button type="submit">Connexion</button>
+        <h4>Connexion</h4><br>
+        <div>
+            <label for="connexion_mail">Email</label> <br>
+            <input type="text" name="connexion_mail" id="connexion_mail"> <br><br>
+        </div>
+
+        <div>
+            <label for="connexion_password">Password</label> <br>
+            <input type="password" name="connexion_password" id="connexion_password"> <br><br>
+        </div>
+
+
+        <button type="submit" class="button">
+            Se connecter
+        </button>
     </form>
 </div>
+</body>
+</html>

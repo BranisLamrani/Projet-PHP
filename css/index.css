@@ -1,27 +1,29 @@
 body {
-    background-image: url("../image/asanoha-400px.png");
+    /*background-image: url("../image/asanoha-400px.png");*/
+}
+.navbar {
+    background: #EDEDEE;
 }
 header {
-    display: inline-flex;
-    padding: 2em;
+    display: flex;
+    padding: 1em;
+    /*padding-left: 40vw;*/
+    background: white;
+
 }
+
 .titre {
     text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 2em;
+    letter-spacing: 10px;
+    font-size: 3em;
+
 }
 
-.connexion {
-}
-
-.connexion input {
-    width: 20vw;
-}
 
 .inscription {
     display: flex;
-    margin-top:20vh;
-    background: #E1E1E1;
+    margin-top:10vh;
+    background: #EDEDEE;
     padding: 1em 0 2em 0;
 }
 
@@ -47,3 +49,5 @@ label {
     border-radius: 2px;
     text-transform: uppercase;
 }
+
+.nav
