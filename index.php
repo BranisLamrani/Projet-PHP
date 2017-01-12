@@ -40,7 +40,7 @@ try {
                 <ul class="nav navbar-nav">
                     <li><a href="#">Accueil</a></li>
                     <li><a href="#">Inscription</a></li>
-                    <li><a href="#">Se connecter</a></li>
+                    <li><a href="connexion.php">Se connecter</a></li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
