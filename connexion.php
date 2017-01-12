@@ -10,6 +10,7 @@ try {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
 
+
 if (!empty($_POST)) {
     $crypt_password = crypt($_POST['connexion_password'], 'branisnaomipratheepa');
     $login = $dbh->prepare('SELECT * FROM profil WHERE mail = :mail AND password = :password');
@@ -20,8 +21,8 @@ if (!empty($_POST)) {
 
     if (count($users) > 0) {
         $_SESSION['connected'] = true;
-        $_SESSION['id'] = $users[0] ['id']; //enregistrement de l'id membre en session
-        header('location:membre.php');
+        $_SESSION['id'] = $users[0]['id_membre']; //enregistrement de l'id membre en session
+        header('Location: membre.php');
     } else {
         echo 'Connexion impossible. Veuillez réessayer.'; //la ligne s'affiche même lors de l'inscription
     }
@@ -35,7 +36,7 @@ if (!empty($_POST)) {
     <meta charset="UTF-8">
     <title>Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/membre.css">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
 <div class="connexion">
