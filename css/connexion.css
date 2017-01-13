@@ -33,6 +33,9 @@ header {
 
 }
 
+h4 {
+    letter-spacing: 3px;
+}
 
 .connexion {
     display: flex;
@@ -52,4 +55,16 @@ header {
     width: 30vw;
     height: 3vh;
     box-shadow: none;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.copyright {
+    display: flex;
+    margin-top: 50vh;
+    text-align: center;
+    font-style: italic;
+    color: blue;
 }

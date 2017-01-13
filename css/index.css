@@ -1,5 +1,5 @@
 body {
-    background-image: url("..\image\468f1eb44f32cff262691ce185031145.jpg");
+    background-image: url("");
 }
 .navbar {
     background: #EDEDEE;
@@ -50,4 +50,19 @@ label {
     text-transform: uppercase;
 }
 
-.nav
+.photo {
+    width: 20vw;
+    height: 20vh;
+    box-shadow: 8px 5px 5px lightgrey;
+    background: lightpink;
+    margin: 2em;
+    display: inline-block;
+}
+
+.copyright {
+    display: flex;
+    margin-top: 50vh;
+    text-align: center;
+    font-style: italic;
+    color: blue;
+}
