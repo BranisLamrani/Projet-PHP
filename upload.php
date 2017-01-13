@@ -1,7 +1,18 @@
 <?php
+session_start();
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
+
+/*$dsn = 'mysql:dbname=projet_php;host=localhost';
+$user = 'root';
+$password = '';
+try {
+    $dbh = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : ' . $e->getMessage();
+}*/
+
 echo '<pre>';
 var_dump($_FILES);
 echo '</pre>'; // Pour afficher les erreurs
@@ -16,6 +27,22 @@ On aura besoin de se connecter à la base de donnée pour question de sécurité
 met un code pour pouvoir pirater le site par exemple. Le but étant de modifier le nom de l'image dans la base de
 donnée.
 */
+
+// Récupération adresse IP
+function adresse_ip() {
+    // si internet partagé
+    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    } // si proxy
+    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } // Si IP ordinaire
+    elseif (isset($_SERVER['REMOTE_ADDR'])) {
+        return  $_SERVER['REMOTE_ADDR'];
+    }
+}
+$ip = adresse_ip();
+
 
 $repertory_image = 'image/';
 
@@ -76,14 +103,13 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
                     echo 'Connexion à la base échouée : ' . $e->getMessage();
                 }
 
-
-                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu)');
-
+                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu, :ip, NOW()');
+                //rajout date d'ajout à changer
                 $req->execute([
                     ':name' => $newname,
                     ':description' => $_POST['description'],
-                    ':imageu' => $repertory_image.$newname
-
+                    ':imageu' => $repertory_image.$newname,
+                    ':ip' => $ip,
                 ]);
 
                 $test=$req-> fetchAll();
