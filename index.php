@@ -47,56 +47,15 @@ try {
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Accueil</a></li>
+                    <li><a href="inscription.php">S'inscrire</a></li>
                     <li><a href="connexion.php">Se connecter</a></li>
                 </ul>
 
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
 
     </nav>
 
-
-
-
-        
-
-    <div class="inscription">
-        <form action="#" method="post" enctype="multipart/form-data">
-            <h2>INSCRIPTION</h2>
-            <br>
-
-            <div>
-                <label for="name">Nom</label>
-                <br>
-                <input type="text" name="name" id="name">
-            </div>
-
-            <br>
-            <div>
-                <label for="inscription_mail">Email</label>
-                <br>
-                <input type="Email" name="inscription_mail" id="inscription_mail">
-            </div>
-
-            <br>
-
-            <div>
-                <label for="inscription_password">Mot de passe</label>
-                <br>
-                <input type="password" name="inscription_password" id="inscription_password">
-            </div>
-
-
-            <br>
-
-            <button type="submit"> S'inscrire</button>
-        </form>
-    </div>
-    <?php
-    require 'inscription.php';
-    ?>
-
-     
      
      <div class="galerie">
             <div class="photo"></div>
