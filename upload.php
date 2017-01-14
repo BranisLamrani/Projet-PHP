@@ -1,18 +1,7 @@
 <?php
-session_start();
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
-
-/*$dsn = 'mysql:dbname=projet_php;host=localhost';
-$user = 'root';
-$password = '';
-try {
-    $dbh = new PDO($dsn, $user, $password);
-} catch (PDOException $e) {
-    echo 'Connexion échouée : ' . $e->getMessage();
-}*/
-
 echo '<pre>';
 var_dump($_FILES);
 echo '</pre>'; // Pour afficher les erreurs
@@ -28,24 +17,7 @@ met un code pour pouvoir pirater le site par exemple. Le but étant de modifier 
 donnée.
 */
 
-// Récupération adresse IP
-function adresse_ip() {
-    // si internet partagé
-    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-        return $_SERVER['HTTP_CLIENT_IP'];
-    } // si proxy
-    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } // Si IP ordinaire
-    elseif (isset($_SERVER['REMOTE_ADDR'])) {
-        return  $_SERVER['REMOTE_ADDR'];
-    }
-}
-$ip = adresse_ip();
-
-
 $repertory_image = 'image/';
-
 if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court et cela évite les erreurs sur la BDD
 {
 
@@ -92,7 +64,10 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
             {
 
                 $newname= "photo".uniqid();
-                move_uploaded_file($imagetmp, $repertory_image .$newname);
+                $finalname=$newname.'.'.$extension;
+                $picturemove=move_uploaded_file($imagetmp, $repertory_image.$finalname);
+                
+
                 $dsn = 'mysql:dbname=projet_php;host=127.0.0.1';
                 $user = 'root';
                 $password = '';
@@ -103,29 +78,35 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
                     echo 'Connexion à la base échouée : ' . $e->getMessage();
                 }
 
-                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu, :ip, NOW()');
-                //rajout date d'ajout à changer
+
+                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu)');
+
                 $req->execute([
                     ':name' => $newname,
                     ':description' => $_POST['description'],
-                    ':imageu' => $repertory_image.$newname,
-                    ':ip' => $ip,
+                    ':imageu' => $repertory_image.$newname.$extension
+
                 ]);
 
-                $test=$req-> fetchAll();
-                var_dump($test);
+
+
             }
 
         }
 
     }
 
+
 }
 
 ?>
-<form action="" method="POST" enctype="multipart/form-data">
+
+
+<form id="uploader" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="imageu" id="file">
-    <input type="text" name="description" id="description">
+
+    <input type="text" name="description" id="description" placeholder="description">
+
 
     <button type="submit">Envoyer</button>
 </form>
