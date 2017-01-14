@@ -28,7 +28,7 @@ if (empty($_SESSION)) {
     <title>Page Membre</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/connexion.css">
-
+    <link rel="stylesheet" href="./membre.css">
 
     <style>
         .travaux {
@@ -116,6 +116,17 @@ if (empty($_SESSION)) {
 
 </div>
 
+<br>
+<br>
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+    <li><a href="modif_membre.php"> Modifier</a></li>
+    <li><a href="suppression_membre.php">Supprimer</a></li>
+</div>
+
+<br>
+<br>
 
 <footer>
     <div class="copyright">
