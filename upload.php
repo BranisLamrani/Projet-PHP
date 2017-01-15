@@ -6,22 +6,6 @@ echo '<pre>';
 var_dump($_FILES);
 echo '</pre>'; // Pour afficher les erreurs
 
-// Récupération adresse IP
-function adresse_ip() {
-    // si internet partagé
-    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-        return $_SERVER['HTTP_CLIENT_IP'];
-    } // si proxy
-    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } // Si IP ordinaire
-    elseif (isset($_SERVER['REMOTE_ADDR'])) {
-        return  $_SERVER['REMOTE_ADDR'];
-    }
-}
-$ip = adresse_ip();
-
-
 $extensions = array('png','jpeg','jpg'); //extension autorisé pour les images.
 $mimes = array('image/png','image/jpeg'); //extension autorisé pour les images.
 
@@ -95,17 +79,24 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
                 }
 
 
-                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu, :ip, NOW())');
+                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu)');
 
                 $req->execute([
                     ':name' => $newname,
                     ':description' => $_POST['description'],
-                    ':imageu' => $repertory_image.$newname.$extension,
-                    ':ip' => $ip
+                    ':imageu' => $repertory_image.$newname.'.'.$extension
+
                 ]);
+
+
+
             }
+
         }
+
     }
+
+
 }
 
 ?>

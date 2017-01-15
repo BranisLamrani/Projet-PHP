@@ -1,5 +1,5 @@
 <?php
-
+require'upload.php';
 $dsn = 'mysql:dbname=projet_php;host=localhost';
 $user = 'root';
 $password = '';
@@ -9,13 +9,9 @@ try {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
 
-$req = $dbh->prepare('SELECT * FROM images');
+$req = $dbh->prepare('SELECT * FROM images ORDER BY id DESC LIMIT 5');
 $req->execute();
 $res = $req->fetchAll();
-
 foreach ($res as $image) {
-
-    echo '<img height="200" src="' . $image['image'] . '">';
-
+    echo '<img height="200" src=" ' . $image['image'] . ' ">';
 }
-
