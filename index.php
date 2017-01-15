@@ -81,7 +81,89 @@ try {
 
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="css/inscription.css">
+
+    <style>
+        body {
+            background-image: url(./image/geometry.png);
+        }
+        header {
+            display: flex;
+            padding: 1em;
+            /*padding-left: 40vw;*/
+            background: white;
+            text-decoration: none;
+            border-bottom:dashed 2px black;
+            opacity: 0.9;
+            background: white;
+            opacity:0.9;
+            border-bottom:dotted 2px black;
+            border-top:solid 2px black;
+            padding-top:1em;
+            height: 12vh;
+            width:100%;
+            z-index:3;
+            text-transform:uppercase;
+            letter-spacing:0.5em;
+            position: fixed;
+        }
+
+        .typewrite {
+            font-size: 45px;
+            color: black;
+            letter-spacing: 8px;
+        }
+
+        .typewrite:hover {
+            text-decoration: none;
+        }
+
+
+        nav ul{
+
+            list-style-type:none;
+            display:block;
+        }
+
+        nav li{
+            display:inline-block;
+            text-align:left;
+            padding:10px;
+            border-right:black 1px solid;
+        }
+
+        .navbar{
+            width:100%;
+            position:fixed;
+            margin-top: 12vh;
+            padding:10px;
+            font-size:13px;
+            border-bottom:solid 2px black;
+            text-align:center;
+            background: white;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        a {
+            text-decoration: none;
+            color: dimgrey;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: black;
+            font-style: italic;
+        }
+
+        .copyright {
+            display: flex;
+            margin-top: 30vh;
+            text-align: center;
+            font-style: italic;
+            color: black;
+        }
+    </style>
 </head>
 <body>
 

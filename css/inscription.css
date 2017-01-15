@@ -1,0 +1,31 @@
+/*INSCRIPTION*/
+.inscription {
+    display: flex;
+    margin-top:10vh;
+    background: #EDEDEE;
+    padding: 1em 0 2em 0;
+}
+
+.inscription form {
+    margin: auto;
+    text-align: center;
+}
+
+.inscription input {
+    margin: 1vh 0;
+    border-radius: 2px;
+    width: 30vw;
+    height: 3vh;
+    box-shadow: none;
+}
+
+label {
+    text-transform: uppercase;
+}
+
+.inscription button {
+    margin-top: 2vh;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
