@@ -1,5 +1,5 @@
 <?php
-require'upload.php';
+
 $dsn = 'mysql:dbname=projet_php;host=localhost';
 $user = 'root';
 $password = '';
