@@ -12,6 +12,7 @@ try {
 $req = $dbh->prepare('SELECT * FROM images ORDER BY id DESC LIMIT 5');
 $req->execute();
 $res = $req->fetchAll();
+
 foreach ($res as $image) {
-    echo '<img height="200" src=" ' . $image['image'] . ' ">';
+    echo '<img height="100" src=" ' . $image['image'] . ' ">';
 }

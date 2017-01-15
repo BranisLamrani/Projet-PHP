@@ -102,10 +102,21 @@ if (empty($_SESSION)) {
     </div>
 
 </nav>
+<?php
+    require 'upload.php';
+?>
+<form id="uploader" action="" method="POST" enctype="multipart/form-data">
+    <input type="file" name="imageu" id="file">
+    <input type="text" name="description" id="description" placeholder="description">
+    <button type="submit">Envoyer</button>
+</form>
+<br><br>
 
-   <div class="galerie">
-
-   </div>
+<div class="galerie">
+    <?php
+        require 'images_membre.php';
+    ?>
+</div>
 
 <div class="travaux">
     <h1>    PAGE EN TRAVAUX
