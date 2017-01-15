@@ -1,24 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('error_reporting', E_ALL);
-echo '<pre>';
-var_dump($_FILES);
-echo '</pre>'; // Pour afficher les erreurs
 
-// Récupération adresse IP
-function adresse_ip() {
-    // si internet partagé
-    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-        return $_SERVER['HTTP_CLIENT_IP'];
-    } // si proxy
-    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } // Si IP ordinaire
-    elseif (isset($_SERVER['REMOTE_ADDR'])) {
-        return  $_SERVER['REMOTE_ADDR'];
-    }
-}
-$ip = adresse_ip();
 
 
 $extensions = array('png','jpeg','jpg'); //extension autorisé pour les images.
@@ -77,7 +58,7 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
             }
             else
             {
-
+                
                 $newname= "photo".uniqid();
                 $finalname=$newname.'.'.$extension;
                 $picturemove=move_uploaded_file($imagetmp, $repertory_image.$finalname);
@@ -93,31 +74,36 @@ if (isset($_FILES['imageu']))  //imageu comme image upload .. c'est plus court e
                     echo 'Connexion à la base échouée : ' . $e->getMessage();
                 }
 
-                if (isset ($_SESSION['id'])) {
-                    $id_membre = $_SESSION['id'];
-                    $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu, :ip, NOW(), :id_membre)');
 
-                    $req->execute([
-                        ':name' => $newname,
-                        ':description' => $_POST['description'],
-                        ':imageu' => $repertory_image.$newname.'.'.$extension,
-                        ':ip' => $ip,
-                        ':id_membre' => $id_membre
-                    ]);
-                } else {
-                    $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu, :ip, NOW(), NULL)');
+                 $req = $dbh->prepare('INSERT INTO images VALUES (NULL, :name, :description, :imageu)');
 
-                    $req->execute([
-                        ':name' => $newname,
-                        ':description' => $_POST['description'],
-                        ':imageu' => $repertory_image.$newname.'.'.$extension,
-                        ':ip' => $ip
-                    ]);
-                }
+                $req->execute([
+                    ':name' => htmlentities($newname),
+                    ':description' => htmlentities($_POST['description']),
+                    ':imageu' => $repertory_image.$newname.'.'.$extension
+                    
+
+                ]);
+
+
+
             }
+
         }
+
     }
+
+
 }
 
 ?>
 
+
+<form id="uploader" action="" method="POST" enctype="multipart/form-data">
+    <input type="file" name="imageu" id="file">
+
+    <input type="text" name="description" id="description" placeholder="description">
+
+
+    <button type="submit">Envoyer</button>
+</form>
