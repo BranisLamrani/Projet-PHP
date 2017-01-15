@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: prath
- * Date: 14/01/2017
- * Time: 21:15
- */
 
 ?>
 
@@ -34,19 +28,11 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Accueil</a></li>
+                <li><a href="index.php">Accueil</a></li>
                 <li><a href="membre.php">Mon compte</a></li>
                 <li><a href="membre.php?deconnexion=true">Se Déconnecter</a></li>
             </ul>
