@@ -15,8 +15,9 @@ if (!empty($_POST)) {
     $crypt_password = crypt($_POST['connexion_password'], 'branisnaomipratheepa');
     $login = $dbh->prepare('SELECT * FROM profil WHERE mail = :mail AND password = :password');
     $login->execute([
-        ':mail' => $_POST['connexion_mail'],
-        ':password' => $crypt_password]);
+        ':mail' => htmlentities($_POST['connexion_mail']), //ajout duhtmlentities()
+        ':password' => htmlentities($crypt_password) //ajout du htmlentities()
+    ]);
     $users = $login->fetchAll();
 
     if (count($users) > 0) {
@@ -39,6 +40,8 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/connexion.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
+    
 </head>
 <body>
 

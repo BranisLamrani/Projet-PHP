@@ -1,0 +1,68 @@
+
+.navbar {
+    background: #EDEDEE;
+}
+header {
+    display: flex;
+    padding: 1em;
+    /*padding-left: 40vw;*/
+    background: white;
+
+}
+
+.titre {
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-size: 3em;
+
+}
+
+h4 {
+    letter-spacing: 3px;
+}
+
+.connexion {
+    display: inline-block;
+    background-color: white;
+    color:black;
+    margin-top: 25vh;
+    margin-left: 29vw;
+    border-radius: 5px;
+    padding: 2em 3em 3em 3em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 8px 5px 5px lightgrey;
+    font-family: 'Concert One', cursive;
+}
+
+
+.connexion form {
+    margin: auto;
+    text-align: center;
+}
+
+.connexion input {
+    margin: 1vh 0;
+    border-radius: 2px;
+    width: 250px;
+    height: 3vh;
+    box-shadow: none;
+    text-align: center;
+}
+
+button {
+    border-radius: 5px;
+    font-family:fantasy;
+    background-color:black;
+    opacity:0.9;
+    color: bisque;
+}
+
+.copyright {
+    display: flex;
+    margin-top: 50vh;
+    text-align: center;
+    font-style: italic;
+    color: blue;
+}
