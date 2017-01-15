@@ -38,18 +38,90 @@ if (!empty($_POST)) {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="css/inscription.css">
     <link rel="stylesheet" href="./css/connexion.css">
     <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
-    
+    <script>
+
+        var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+
+            setTimeout(function() {
+                that.tick();
+            }, delta);
+        };
+
+        window.onload = function() {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i=0; i<elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #000; color: black; text-decoration: none} a {text-decoration: none} ";
+            document.body.appendChild(css);
+        };
+
+    </script>
+
+    <style>
+        body {
+            background-image: url(./image/geometry.png);
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="titre">
-        Photosup
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 titre">
+                <a href="" class="typewrite" data-period="2000" data-type='[ "PHOTOSUP." ]'>
+                    <span class="wrap"></span>
+                </a>
+            </div>
+        </div>
     </div>
 </header>
+
 
 
 <nav class="navbar navbar-default">
@@ -66,6 +138,7 @@ if (!empty($_POST)) {
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="index.php">Accueil</a></li>
+                <li><a href="inscription.php">S'inscrire</a></li>
             </ul>
 
         </div>
